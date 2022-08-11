@@ -3,6 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/ColorHunter2/app/src/main/res/drawable/form_button_camera_capture.xml" value="0.2505" />
+        <entry key="..\:/ColorHunter2/app/src/main/res/drawable/form_button_show_data.xml" value="0.2505" />
+        <entry key="..\:/ColorHunter2/app/src/main/res/drawable/form_ring.xml" value="0.2505" />
+        <entry key="..\:/ColorHunter2/app/src/main/res/drawable/ic_baseline_camera_24.xml" value="0.2505" />
+        <entry key="..\:/ColorHunter2/app/src/main/res/drawable/ic_baseline_photo_camera_24.xml" value="0.2505" />
+        <entry key="..\:/ColorHunter2/app/src/main/res/drawable/ic_baseline_radio_button_unchecked_24.xml" value="0.2505" />
         <entry key="..\:/ColorHunter2/app/src/main/res/layout/activity_main.xml" value="0.34692028985507245" />
       </map>
     </option>
