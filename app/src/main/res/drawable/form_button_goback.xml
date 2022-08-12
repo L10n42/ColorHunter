@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:drawable="@drawable/ic_baseline_folder_24"
-        android:top="5sp"
-        android:bottom="5sp"
-        android:right="5sp"
-        android:left="5sp"/>
+    <item android:drawable="@drawable/ic_baseline_arrow_circle_left_24"/>
 
     <item>
         <shape android:shape="oval">

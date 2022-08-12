@@ -10,6 +10,6 @@
 
     //my custom colors
     <color name="light_gray">#A1A1A1</color>
-    <color name="color_for_bottom_bar">#66000000</color>
+    <color name="color_for_bar">#66000000</color>
 
 </resources>
