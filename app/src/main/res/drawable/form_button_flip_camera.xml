@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/ic_baseline_flip_camera_ios_50"
+        android:left="5sp"
+        android:right="5sp"
+        android:top="5sp"
+        android:bottom="7sp"
+        android:gravity="center">
+    </item>
+
+    <item>
+        <shape android:shape="oval">
+            <size
+                android:width="50sp"
+                android:height="50sp"/>
+            <stroke
+                android:width="1sp"
+                android:color="@color/white"/>
+        </shape>
+    </item>
+
+</layer-list>
