@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">ColorHunter</string>
 
+    <string name="add_new_color_toolbar_title">Add new color</string>
+    <string name="save_btn_text">save</string>
 
 </resources>

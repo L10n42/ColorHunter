@@ -4,6 +4,62 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/main_background"
     tools:context=".my_class.activitys.AddNewColorActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/add_new_activity_toolBar"
+        style="@style/Toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/save_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginEnd="10sp"
+            android:background="@drawable/form_button_rectangle_stroke"
+            android:text="@string/save_btn_text"
+            android:paddingEnd="10sp"
+            android:paddingStart="10sp"
+            android:paddingBottom="3sp"
+            android:gravity="center_vertical|center_horizontal"
+            android:textAlignment="gravity"
+            android:textStyle="bold"
+            android:textColor="@color/light_orange"
+            android:textSize="22sp"/>
+    </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/enter_name"
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:layout_marginHorizontal="10sp"
+        android:layout_marginTop="20sp"
+        android:background="@drawable/form_button_rectangle_stroke"
+        android:gravity="center_vertical"
+        android:paddingStart="10sp"
+        android:paddingEnd="10sp"
+        android:text="hello world, how are you today?"
+        android:textAlignment="gravity"
+        android:textColor="@color/text_color_1"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/add_new_activity_toolBar" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="20sp"
+        android:layout_marginStart="20sp"
+        android:layout_marginTop="9sp"
+        android:background="@drawable/form_round_button"
+        android:backgroundTint="@color/main_background"
+        android:text="name"
+        android:textColor="@color/light_orange"
+        android:paddingHorizontal="5sp"
+        app:layout_constraintTop_toBottomOf="@+id/add_new_activity_toolBar"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

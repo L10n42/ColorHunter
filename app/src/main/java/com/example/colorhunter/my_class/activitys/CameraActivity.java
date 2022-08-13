@@ -107,6 +107,14 @@ public class CameraActivity extends AppCompatActivity {
             }
         });
 
+        addNewColorBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CameraActivity.this, AddNewColorActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override

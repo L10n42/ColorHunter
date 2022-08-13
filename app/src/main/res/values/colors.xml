@@ -11,8 +11,13 @@
     <color name="red">#FF0000</color>
     <color name="green">#00FF00</color>
 
+    <color name="toolBar_background_color">#6B434C</color>
+    <color name="main_background">#9B878B</color>
+
     //my custom colors
     <color name="light_gray">#A1A1A1</color>
     <color name="color_for_bar">#66000000</color>
+    <color name="light_orange">#E88846</color>
+    <color name="text_color_1">#DED9D4</color>
 
 </resources>
