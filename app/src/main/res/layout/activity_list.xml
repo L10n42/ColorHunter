@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".my_class.activitys.CameraActivity">
+    tools:context=".main.activitys.CameraActivity">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/open_camera"

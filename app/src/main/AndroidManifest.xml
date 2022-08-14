@@ -17,13 +17,14 @@
         android:theme="@style/Theme.ColorHunter"
         tools:targetApi="31" >
         <activity
-            android:name=".my_class.activitys.CameraActivity"
+            android:name=".main.activitys.CameraActivity"
             android:exported="false" />
         <activity
-            android:name=".my_class.activitys.AddNewColorActivity"
+            android:name=".main.activitys.AddNewColorActivity"
+            android:windowSoftInputMode="stateVisible"
             android:exported="false" />
         <activity
-            android:name=".my_class.activitys.ListActivity"
+            android:name=".main.activitys.ListActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

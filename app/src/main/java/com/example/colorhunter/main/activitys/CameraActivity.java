@@ -1,14 +1,9 @@
-package com.example.colorhunter.my_class.activitys;
+package com.example.colorhunter.main.activitys;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.camera.camera2.internal.compat.workaround.MaxPreviewSize;
-import androidx.camera.core.AspectRatio;
-import androidx.camera.core.CameraControl;
 import androidx.camera.core.CameraSelector;
-import androidx.camera.core.CameraX;
 import androidx.camera.core.ImageAnalysis;
-import androidx.camera.core.ImageCapture;
 import androidx.camera.core.ImageProxy;
 import androidx.camera.core.Preview;
 import androidx.camera.lifecycle.ProcessCameraProvider;
@@ -23,29 +18,18 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.media.Image;
-import android.opengl.Matrix;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.Size;
-import android.view.Display;
-import android.view.Surface;
-import android.view.TextureView;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.colorhunter.R;
-import com.example.colorhunter.my_class.YUVtoRGB;
+import com.example.colorhunter.main.YUVtoRGB;
 import com.google.common.util.concurrent.ListenableFuture;
 
-import org.jetbrains.annotations.Nullable;
-
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
 public class CameraActivity extends AppCompatActivity {
 
@@ -55,6 +39,9 @@ public class CameraActivity extends AppCompatActivity {
     private TextView textViewR, textViewG, textViewB, textViewHex;
 
     YUVtoRGB translator = new YUVtoRGB();
+
+    private int rC, gC, bC;
+    private String colorHex;
 
     private CameraSelector cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA;
     ProcessCameraProvider cameraProvider;
@@ -111,6 +98,10 @@ public class CameraActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CameraActivity.this, AddNewColorActivity.class);
+                intent.putExtra("hex", colorHex);
+                intent.putExtra("r", rC);
+                intent.putExtra("g", gC);
+                intent.putExtra("b", bC);
                 startActivity(intent);
             }
         });
@@ -155,10 +146,10 @@ public class CameraActivity extends AppCompatActivity {
                                     int pixel = bitmap.getPixel(bitmap.getWidth() / 2, bitmap.getHeight() / 2);
 
                                     if (pixel != 0) {
-                                        int rC = Color.red(pixel);
-                                        int gC = Color.green(pixel);
-                                        int bC = Color.blue(pixel);
-                                        String colorHex = "#" + Integer.toHexString(pixel);
+                                        rC = Color.red(pixel);
+                                        gC = Color.green(pixel);
+                                        bC = Color.blue(pixel);
+                                        colorHex = "#" + Integer.toHexString(pixel);
 
                                         colorPreview.setBackgroundColor(Color.parseColor(colorHex));
 

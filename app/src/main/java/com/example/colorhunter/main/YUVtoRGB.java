@@ -1,4 +1,4 @@
-package com.example.colorhunter.my_class;
+package com.example.colorhunter.main;
 
 import android.content.Context;
 import android.graphics.Bitmap;
