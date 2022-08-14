@@ -4,4 +4,15 @@
     <string name="add_new_color_toolbar_title">Add new color</string>
     <string name="save_btn_text">save</string>
 
+    // tags for TextView title
+    <string name="tag_description">description</string>
+    <string name="tag_name">name</string>
+    <string name="tag_hex">Hex</string>
+    <string name="tag_rgb">RGB</string>
+    <string name="tag_color">color</string>
+
+    //hints
+    <string name="enter_name_hint">Enter name here.</string>
+    <string name="enter_description_hint">Enter description here. (not necessarily)</string>
+
 </resources>

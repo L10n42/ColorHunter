@@ -32,17 +32,19 @@
             android:textSize="22sp"/>
     </androidx.appcompat.widget.Toolbar>
 
-    <TextView
+    <EditText
         android:id="@+id/enter_name"
         android:layout_width="match_parent"
-        android:layout_height="50sp"
-        android:layout_marginHorizontal="10sp"
+        android:layout_height="wrap_content"
+        android:minHeight="50sp"
         android:layout_marginTop="20sp"
+        android:layout_marginStart="10sp"
+        android:layout_marginEnd="80sp"
         android:background="@drawable/form_button_rectangle_stroke"
         android:gravity="center_vertical"
-        android:paddingStart="10sp"
-        android:paddingEnd="10sp"
-        android:text="hello world, how are you today?"
+        android:paddingVertical="10sp"
+        android:paddingHorizontal="10sp"
+        android:hint="@string/enter_name_hint"
         android:textAlignment="gravity"
         android:textColor="@color/text_color_1"
         android:textSize="18sp"
@@ -52,14 +54,139 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="20sp"
-        android:layout_marginStart="20sp"
-        android:layout_marginTop="9sp"
+        android:layout_marginStart="10sp"
+        android:layout_marginTop="-10sp"
         android:background="@drawable/form_round_button"
         android:backgroundTint="@color/main_background"
-        android:text="name"
+        android:text="@string/tag_name"
         android:textColor="@color/light_orange"
         android:paddingHorizontal="5sp"
-        app:layout_constraintTop_toBottomOf="@+id/add_new_activity_toolBar"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/enter_name"
+        app:layout_constraintStart_toStartOf="@id/enter_name" />
+
+    <ImageView
+        android:id="@+id/color"
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        android:layout_marginTop="20sp"
+        android:layout_marginEnd="5sp"
+        android:layout_marginStart="5sp"
+        android:src="@drawable/form_color_preview"
+        android:background="@drawable/form_button_rectangle_stroke"
+        android:paddingHorizontal="10sp"
+        android:paddingVertical="10sp"
+        app:tint="@color/teal_200"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/enter_name"
+        app:layout_constraintTop_toBottomOf="@id/add_new_activity_toolBar" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="20sp"
+        android:layout_marginStart="5sp"
+        android:layout_marginTop="-10sp"
+        android:background="@drawable/form_round_button"
+        android:backgroundTint="@color/main_background"
+        android:text="@string/tag_color"
+        android:textColor="@color/light_orange"
+        android:paddingHorizontal="5sp"
+        app:layout_constraintTop_toTopOf="@+id/color"
+        app:layout_constraintStart_toStartOf="@id/color" />
+
+    <EditText
+        android:id="@+id/enter_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="50sp"
+        android:layout_marginTop="20sp"
+        android:layout_marginStart="10sp"
+        android:layout_marginEnd="10sp"
+        android:background="@drawable/form_button_rectangle_stroke"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="10sp"
+        android:paddingVertical="10sp"
+        android:hint="@string/enter_description_hint"
+        android:textAlignment="gravity"
+        android:textColor="@color/text_color_1"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/enter_name" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="20sp"
+        android:layout_marginStart="10sp"
+        android:layout_marginTop="-10sp"
+        android:background="@drawable/form_round_button"
+        android:backgroundTint="@color/main_background"
+        android:text="@string/tag_description"
+        android:textColor="@color/light_orange"
+        android:paddingHorizontal="5sp"
+        app:layout_constraintTop_toTopOf="@+id/enter_description"
+        app:layout_constraintStart_toStartOf="@id/enter_description" />
+
+    <TextView
+        android:id="@+id/textView_hex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="110sp"
+        android:minHeight="50sp"
+        android:layout_marginTop="20sp"
+        android:layout_marginStart="10sp"
+        android:layout_marginEnd="10sp"
+        android:background="@drawable/form_button_rectangle_stroke"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="10sp"
+        android:paddingVertical="10sp"
+        android:textAlignment="gravity"
+        android:textColor="@color/text_color_1"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/enter_description" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="20sp"
+        android:layout_marginStart="10sp"
+        android:layout_marginTop="-10sp"
+        android:background="@drawable/form_round_button"
+        android:backgroundTint="@color/main_background"
+        android:text="@string/tag_hex"
+        android:textColor="@color/light_orange"
+        android:paddingHorizontal="5sp"
+        app:layout_constraintTop_toTopOf="@+id/textView_hex"
+        app:layout_constraintStart_toStartOf="@id/textView_hex" />
+
+    <TextView
+        android:id="@+id/textView_RGB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="130sp"
+        android:layout_marginTop="20sp"
+        android:layout_marginEnd="10sp"
+        android:background="@drawable/form_button_rectangle_stroke"
+        android:gravity="center_vertical"
+        android:minHeight="50sp"
+        android:paddingHorizontal="10sp"
+        android:paddingVertical="10sp"
+        android:textAlignment="gravity"
+        android:textColor="@color/text_color_1"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/textView_hex"
+        app:layout_constraintTop_toBottomOf="@id/enter_description" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="20sp"
+        android:layout_marginStart="-50sp"
+        android:layout_marginTop="-10sp"
+        android:background="@drawable/form_round_button"
+        android:backgroundTint="@color/main_background"
+        android:text="@string/tag_rgb"
+        android:textColor="@color/light_orange"
+        android:paddingHorizontal="5sp"
+        app:layout_constraintTop_toTopOf="@+id/textView_RGB"
+        app:layout_constraintStart_toStartOf="@id/textView_RGB" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
