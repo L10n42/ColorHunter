@@ -5,9 +5,12 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.colorhunter.R;
@@ -18,6 +21,7 @@ public class AddNewColorActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private TextView saveBtn, hexTextView, rgbTextView;
     private EditText enterName, enterDescription;
+    private View colorView;
 
     private String hex;
     private int rC, gC, bC;
@@ -62,6 +66,7 @@ public class AddNewColorActivity extends AppCompatActivity {
     private void setData() {
         hexTextView.setText("Hex: " + hex);
         rgbTextView.setText("R: " + rC + "    " + "G: " + gC + "    " + "B: " + bC);
+        colorView.setBackgroundColor(Color.parseColor(hex));
     }
 
     private void getExtras() {
@@ -80,6 +85,7 @@ public class AddNewColorActivity extends AppCompatActivity {
         enterName = findViewById(R.id.enter_name);
         hexTextView = findViewById(R.id.textView_hex);
         rgbTextView = findViewById(R.id.textView_RGB);
+        colorView = findViewById(R.id.color);
     }
 
     private void setToolbar() {

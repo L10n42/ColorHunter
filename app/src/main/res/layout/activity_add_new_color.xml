@@ -64,21 +64,25 @@
         app:layout_constraintTop_toTopOf="@+id/enter_name"
         app:layout_constraintStart_toStartOf="@id/enter_name" />
 
-    <ImageView
-        android:id="@+id/color"
+    <FrameLayout
+        android:id="@+id/frame"
         android:layout_width="50sp"
         android:layout_height="50sp"
         android:layout_marginTop="20sp"
         android:layout_marginEnd="5sp"
-        android:layout_marginStart="5sp"
-        android:src="@drawable/form_color_preview"
-        android:background="@drawable/form_button_rectangle_stroke"
-        android:paddingHorizontal="10sp"
-        android:paddingVertical="10sp"
-        app:tint="@color/teal_200"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/enter_name"
-        app:layout_constraintTop_toBottomOf="@id/add_new_activity_toolBar" />
+        app:layout_constraintTop_toBottomOf="@id/add_new_activity_toolBar"
+        android:background="@drawable/form_button_rectangle_stroke">
+
+        <View
+            android:id="@+id/color"
+            android:layout_width="30sp"
+            android:layout_height="30sp"
+            android:layout_gravity="center"
+            android:background="@color/teal_200"/>
+
+    </FrameLayout>
 
     <TextView
         android:layout_width="wrap_content"
@@ -90,8 +94,8 @@
         android:text="@string/tag_color"
         android:textColor="@color/light_orange"
         android:paddingHorizontal="5sp"
-        app:layout_constraintTop_toTopOf="@+id/color"
-        app:layout_constraintStart_toStartOf="@id/color" />
+        app:layout_constraintTop_toTopOf="@+id/frame"
+        app:layout_constraintStart_toStartOf="@id/frame" />
 
     <EditText
         android:id="@+id/enter_description"
@@ -159,8 +163,9 @@
 
     <TextView
         android:id="@+id/textView_RGB"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:minWidth="200sp"
         android:layout_marginStart="130sp"
         android:layout_marginTop="20sp"
         android:layout_marginEnd="10sp"
@@ -173,13 +178,12 @@
         android:textColor="@color/text_color_1"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/textView_hex"
         app:layout_constraintTop_toBottomOf="@id/enter_description" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="20sp"
-        android:layout_marginStart="-50sp"
+        android:layout_marginStart="6sp"
         android:layout_marginTop="-10sp"
         android:background="@drawable/form_round_button"
         android:backgroundTint="@color/main_background"
