@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+
         <androidx.appcompat.widget.AppCompatSpinner
             android:id="@+id/menu_card"
             android:layout_width="35sp"
@@ -35,7 +36,7 @@
             android:textStyle="bold"
             android:textColor="@color/light_orange"
             app:layout_constraintEnd_toStartOf="@id/menu_card"
-            app:layout_constraintStart_toEndOf="@id/color_card"
+            app:layout_constraintStart_toEndOf="@id/frame2"
             app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
@@ -47,21 +48,26 @@
             android:paddingTop="10sp"
             android:text="Name: hello world"
             android:textSize="18sp"
-            app:layout_constraintTop_toBottomOf="@id/color_card"/>
+            app:layout_constraintTop_toBottomOf="@id/frame2"/>
 
-        <ImageView
-            android:id="@+id/color_card"
+        <FrameLayout
+            android:id="@+id/frame2"
             android:layout_width="40sp"
             android:layout_height="40sp"
             android:layout_marginTop="5sp"
             android:layout_marginStart="10sp"
-            android:src="@drawable/form_color_preview"
-            android:background="@drawable/form_button_rectangle_stroke"
-            android:paddingHorizontal="5sp"
-            android:paddingVertical="5sp"
-            app:tint="@color/teal_200"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/form_button_rectangle_stroke">
+
+            <View
+                android:id="@+id/color_card"
+                android:layout_width="30sp"
+                android:layout_height="30sp"
+                android:layout_gravity="center"
+                android:background="@color/teal_200"/>
+
+        </FrameLayout>
 
         <TextView
             android:id="@+id/description_card"
