@@ -12,8 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
-        <androidx.appcompat.widget.AppCompatSpinner
+        <ImageView
             android:id="@+id/menu_card"
             android:layout_width="35sp"
             android:layout_height="35sp"
@@ -43,9 +42,9 @@
             android:id="@+id/name_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="40sp"
+            android:layout_marginTop="5sp"
+            android:minHeight="20sp"
             android:paddingHorizontal="10sp"
-            android:paddingTop="10sp"
             android:text="Name: hello world"
             android:textSize="18sp"
             app:layout_constraintTop_toBottomOf="@id/frame2"/>
@@ -71,11 +70,13 @@
 
         <TextView
             android:id="@+id/description_card"
+            android:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="40sp"
+            android:maxHeight="1dp"
+            android:layout_marginTop="5sp"
+            android:minHeight="20sp"
             android:paddingHorizontal="10sp"
-            android:paddingTop="10sp"
             android:text="Description: hello world"
             android:textSize="18sp"
             app:layout_constraintTop_toBottomOf="@id/name_card"/>
@@ -84,9 +85,9 @@
             android:id="@+id/hex_card"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minHeight="40sp"
+            android:layout_marginTop="5sp"
+            android:minHeight="20sp"
             android:paddingHorizontal="10sp"
-            android:paddingTop="10sp"
             android:text="Hex: #00FFFFFF"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -96,9 +97,9 @@
             android:id="@+id/rgb_card"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minHeight="40sp"
+            android:layout_marginTop="5sp"
+            android:minHeight="20sp"
             android:paddingHorizontal="10sp"
-            android:paddingTop="10sp"
             android:text="R: 135    G: 313    B: 123"
             android:textSize="18sp"
             app:layout_constraintStart_toEndOf="@id/hex_card"

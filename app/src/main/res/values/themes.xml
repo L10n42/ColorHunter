@@ -21,4 +21,11 @@
         <item name="android:background">@color/toolBar_background_color</item>
     </style>
 
+    <style name="MyPopupStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <!-- Used for the title and text -->
+        <item name="android:textColorPrimary">@color/text_color_1</item>
+        <!-- Used for the background -->
+        <item name="android:background">@color/toolBar_background_color</item>
+    </style>
+
 </resources>
