@@ -1,7 +1,10 @@
 package com.example.colorhunter.main.activitys;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -74,18 +77,50 @@ public class ListActivity extends AppCompatActivity {
         database.close();
     }
 
+    public void callShowList() {
+        showList(ListActivity.this, myRecyclerView);
+    }
+
     public void showList(Context context, RecyclerView recyclerView){
         fillColorData();
 
-        MyRVAdapterColors myRVAdapterColors = new MyRVAdapterColors(context, colorData);
+        MyRVAdapterColors myRVAdapterColors = new MyRVAdapterColors(context, colorData, getSupportFragmentManager());
 
         recyclerView.setAdapter(myRVAdapterColors);
     }
+
+    public void dismissActiveFragment() {
+        Fragment frag = getSupportFragmentManager().findFragmentByTag("delete color dialog");
+        Fragment frag_1 = getSupportFragmentManager().findFragmentByTag("");
+
+        if (frag != null)
+            dismissDialogFragment(frag);
+
+        if (frag_1 != null)
+            dismissDialogFragment(frag_1);
+    }
+
+    private void dismissDialogFragment(Fragment frag){
+        DialogFragment df = (DialogFragment) frag;
+        df.dismiss();
+    }
+
 
     private void findAllViewById() {
         openCamera = findViewById(R.id.open_camera);
         myRecyclerView = findViewById(R.id.recyclerView);
         myRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        myRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                if (dy > 0){
+                    openCamera.setVisibility(View.INVISIBLE);
+                }else{
+                    openCamera.setVisibility(View.VISIBLE);
+                }
+            }
+        });
 
         openCamera.setOnClickListener(new View.OnClickListener() {
             @Override

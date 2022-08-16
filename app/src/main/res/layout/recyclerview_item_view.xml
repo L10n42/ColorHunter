@@ -14,12 +14,11 @@
 
         <ImageView
             android:id="@+id/menu_card"
-            android:layout_width="35sp"
-            android:layout_height="35sp"
+            android:layout_width="40sp"
+            android:layout_height="40sp"
             android:background="@drawable/ic_baseline_menu_24"
             android:backgroundTint="@color/light_orange"
             android:layout_marginEnd="10sp"
-            android:layout_marginTop="5sp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -51,18 +50,18 @@
 
         <FrameLayout
             android:id="@+id/frame2"
-            android:layout_width="40sp"
-            android:layout_height="40sp"
+            android:layout_width="35sp"
+            android:layout_height="35sp"
             android:layout_marginTop="5sp"
-            android:layout_marginStart="10sp"
+            android:layout_marginStart="13sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:background="@drawable/form_button_rectangle_stroke">
 
             <View
                 android:id="@+id/color_card"
-                android:layout_width="30sp"
-                android:layout_height="30sp"
+                android:layout_width="25sp"
+                android:layout_height="25sp"
                 android:layout_gravity="center"
                 android:background="@color/teal_200"/>
 
@@ -70,14 +69,15 @@
 
         <TextView
             android:id="@+id/description_card"
-            android:visibility="visible"
+            android:visibility="invisible"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxHeight="1dp"
-            android:layout_marginTop="5sp"
-            android:minHeight="20sp"
+            android:maxHeight="1sp"
+            android:minHeight="1sp"
+            android:paddingBottom="5sp"
+            android:paddingTop="5sp"
             android:paddingHorizontal="10sp"
-            android:text="Description: hello world"
+            android:text="hello world"
             android:textSize="18sp"
             app:layout_constraintTop_toBottomOf="@id/name_card"/>
 
@@ -85,7 +85,6 @@
             android:id="@+id/hex_card"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5sp"
             android:minHeight="20sp"
             android:paddingHorizontal="10sp"
             android:text="Hex: #00FFFFFF"
@@ -97,7 +96,6 @@
             android:id="@+id/rgb_card"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5sp"
             android:minHeight="20sp"
             android:paddingHorizontal="10sp"
             android:text="R: 135    G: 313    B: 123"

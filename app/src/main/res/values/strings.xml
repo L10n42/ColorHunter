@@ -10,10 +10,28 @@
     <string name="tag_hex">Hex</string>
     <string name="tag_rgb">RGB</string>
     <string name="tag_color">color</string>
+    <string name="tag_new_name">new name</string>
+    <string name="tag_new_description">new description</string>
 
     //menu titles
     <string name="menu_delete">Delete</string>
     <string name="menu_edit">Edit</string>
+
+    //Toast mess
+    <string name="mes_deleted">Deleted!</string>
+    <string name="mes_delete_failed">failed =(</string>
+    <string name="error_enter_name">enter name!</string>
+    <string name="error_already_exists">this name already exists</string>
+    
+    //dialog fragment string attributes
+    <string name="color_text">Color:</string>
+    <string name="delete_question">Are you sure you want to delete?</string>
+    <string name="name_text">Name:</string>
+    
+    //dialog fragment button
+    <string name="fragment_delete_btn">delete</string>
+    <string name="fragment_cancel_btn">cancel</string>
+    <string name="fragment_finish_btn">finish</string>
 
     //hints
     <string name="enter_name_hint">Enter name here.</string>

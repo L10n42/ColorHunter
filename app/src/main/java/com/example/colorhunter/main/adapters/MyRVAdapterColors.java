@@ -1,9 +1,12 @@
 package com.example.colorhunter.main.adapters;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -16,10 +19,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.appcompat.widget.PopupMenu;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.colorhunter.R;
+import com.example.colorhunter.main.activitys.ListActivity;
 import com.example.colorhunter.main.custom_view.CustomColorData;
+import com.example.colorhunter.main.dialog_fragments.DeleteColor;
 
 import java.util.ArrayList;
 
@@ -28,10 +34,14 @@ public class MyRVAdapterColors extends RecyclerView.Adapter<MyRVAdapterColors.My
     private Context context, wrapper;
     private ClipboardManager clipboardManager;
     private ArrayList<CustomColorData> colorData;
+    private FragmentManager fragmentManager;
 
-    public MyRVAdapterColors(Context context1, ArrayList<CustomColorData> data){
+    private DBAdapter myAdapter;
+
+    public MyRVAdapterColors(Context context1, ArrayList<CustomColorData> data, FragmentManager fragmentManager){
         this.context = context1;
         this.colorData = data;
+        this.fragmentManager = fragmentManager;
     }
 
     @NonNull
@@ -49,8 +59,9 @@ public class MyRVAdapterColors extends RecyclerView.Adapter<MyRVAdapterColors.My
         holder.name.setText("Name: " + colorData.get(position).getName());
 
         if (colorData.get(position).getDes().equals("0")){
+            holder.description.setText("");
             holder.description.setVisibility(View.INVISIBLE);
-            holder.description.setMaxHeight(1);
+            holder.description.setMaxHeight(2);
             holder.description.setMinHeight(1);
         }else{
             holder.description.setText("Description: " + colorData.get(position).getDes());
@@ -78,7 +89,7 @@ public class MyRVAdapterColors extends RecyclerView.Adapter<MyRVAdapterColors.My
         holder.menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showPopupMenu(holder);
+                showPopupMenu(holder, findIdItem(colorData.get(position).getName()), position);
             }
         });
     }
@@ -112,7 +123,22 @@ public class MyRVAdapterColors extends RecyclerView.Adapter<MyRVAdapterColors.My
         public void onClick(View v) {}
     }
 
-    private void showPopupMenu(MyRVAdapterColors.MyViewHolder viewHolder){
+    private int findIdItem(String name) {
+        myAdapter = new DBAdapter(context);
+        SQLiteDatabase database = myAdapter.getWritableDatabase();
+
+        Cursor cursor = database.query(DBAdapter.DATABASE_TABLE_COLORS, null, "name = ?", new String[]{name}, null, null, null);
+        cursor.moveToFirst();
+
+        @SuppressLint("Range") int id = cursor.getInt(cursor.getColumnIndex(DBAdapter.KEY_ID));
+
+        cursor.close();
+        database.close();
+
+        return id;
+    }
+
+    private void showPopupMenu(MyRVAdapterColors.MyViewHolder viewHolder, int itemId, int pos){
         wrapper = new ContextThemeWrapper(context, R.style.MyPopupStyle);
 
         PopupMenu popupMenu = new PopupMenu(wrapper, viewHolder.menu);
@@ -124,6 +150,8 @@ public class MyRVAdapterColors extends RecyclerView.Adapter<MyRVAdapterColors.My
                 int id = item.getItemId();
 
                 if (id == R.id.menu_btn_delete){
+                    DeleteColor deleteColor = new DeleteColor(context, itemId, colorData.get(pos).getName(), colorData.get(pos).getHex());
+                    deleteColor.show(fragmentManager, "delete color dialog");
 
                 }else if (id == R.id.menu_btn_edit){
 
