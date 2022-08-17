@@ -2,6 +2,7 @@ package com.example.colorhunter.main.activitys;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
@@ -14,6 +15,9 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.example.colorhunter.R;
@@ -30,12 +34,15 @@ public class ListActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private RecyclerView myRecyclerView;
 
+    private MyRVAdapterColors rvAdapterColors;
+
     private ArrayList<CustomColorData> colorData = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
+        rvAdapterColors = new MyRVAdapterColors(this, colorData, getSupportFragmentManager());
 
         findAllViewById();
 
@@ -91,7 +98,7 @@ public class ListActivity extends AppCompatActivity {
 
     public void dismissActiveFragment() {
         Fragment frag = getSupportFragmentManager().findFragmentByTag("delete color dialog");
-        Fragment frag_1 = getSupportFragmentManager().findFragmentByTag("");
+        Fragment frag_1 = getSupportFragmentManager().findFragmentByTag("edit color dialog");
 
         if (frag != null)
             dismissDialogFragment(frag);
@@ -131,4 +138,29 @@ public class ListActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.list_activity_menu, menu);
+
+        MenuItem item = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) item.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                fillColorData();
+                myRecyclerView.setAdapter(rvAdapterColors);
+                rvAdapterColors.getFilter().filter(newText);
+                rvAdapterColors.notifyDataSetChanged();
+                return true;
+            }
+        });
+        return true;
+    }
 }

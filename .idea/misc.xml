@@ -20,6 +20,7 @@
         <entry key="..\:/ColorHunter2/app/src/main/res/drawable/ic_baseline_flip_camera_ios_50.xml" value="0.272" />
         <entry key="..\:/ColorHunter2/app/src/main/res/drawable/ic_baseline_photo_camera_24.xml" value="0.2505" />
         <entry key="..\:/ColorHunter2/app/src/main/res/drawable/ic_baseline_radio_button_unchecked_24.xml" value="0.2505" />
+        <entry key="..\:/ColorHunter2/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.272" />
         <entry key="..\:/ColorHunter2/app/src/main/res/layout/activity_add_new_color.xml" value="0.36666666666666664" />
         <entry key="..\:/ColorHunter2/app/src/main/res/layout/activity_camera.xml" value="0.36666666666666664" />
         <entry key="..\:/ColorHunter2/app/src/main/res/layout/activity_list.xml" value="0.36666666666666664" />
@@ -29,6 +30,7 @@
         <entry key="..\:/ColorHunter2/app/src/main/res/layout/recyclerview_item_view.xml" value="0.365625" />
         <entry key="..\:/ColorHunter2/app/src/main/res/layout/recyclerview_menu_item_view.xml" value="0.365625" />
         <entry key="..\:/ColorHunter2/app/src/main/res/menu/add_new_color_activity_menu.xml" value="0.365625" />
+        <entry key="..\:/ColorHunter2/app/src/main/res/menu/list_activity_menu.xml" value="0.365625" />
         <entry key="..\:/ColorHunter2/app/src/main/res/menu/popup_menu.xml" value="0.365625" />
       </map>
     </option>

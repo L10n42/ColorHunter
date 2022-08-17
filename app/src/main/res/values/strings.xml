@@ -19,6 +19,7 @@
 
     //Toast mess
     <string name="mes_deleted">Deleted!</string>
+    <string name="mes_edited">Edited!</string>
     <string name="mes_delete_failed">failed =(</string>
     <string name="error_enter_name">enter name!</string>
     <string name="error_already_exists">this name already exists</string>

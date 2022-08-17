@@ -1,6 +1,7 @@
 package com.example.colorhunter.main.dialog_fragments;
 
 import android.annotation.SuppressLint;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.Resources;
@@ -36,15 +37,19 @@ public class EditColor extends DialogFragment {
     private TextView btnCancel, btnFinish;
 
     private String oldName, oldDescription, newNameText, newDescriptionText;
+    private Boolean check;
+    private int id;
 
     private Context context;
 
     private DBAdapter myAdapter;
+    private SQLiteDatabase database;
 
-    public EditColor(Context c, String oldName, String oldDescription){
+    public EditColor(Context c, String oldName, String oldDescription, int id){
         this.context = c;
         this.oldDescription = oldDescription;
         this.oldName = oldName;
+        this.id = id;
     }
 
     @Nullable
@@ -52,6 +57,7 @@ public class EditColor extends DialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dialog_fragment_edit_color, container, false);
         myAdapter = new DBAdapter(context);
+        database = myAdapter.getWritableDatabase();
 
         newName = view.findViewById(R.id.enter_new_name);
         newDescription = view.findViewById(R.id.enter_new_description);
@@ -98,8 +104,8 @@ public class EditColor extends DialogFragment {
     }
 
     private boolean checkingForExistence(){
-        SQLiteDatabase database = myAdapter.getWritableDatabase();
         Cursor cursor = database.query(DBAdapter.DATABASE_TABLE_COLORS, null, null, null, null, null, null);
+
         if (!newNameText.equals(oldName)){
             if (cursor.moveToFirst()) {
                 do {
@@ -108,14 +114,19 @@ public class EditColor extends DialogFragment {
                         Toast toast2 = Toast.makeText(context, getResources().getString(R.string.error_already_exists), Toast.LENGTH_SHORT);
                         toast2.setGravity(Gravity.TOP, Resources.getSystem().getDisplayMetrics().widthPixels / 2, 40);
                         toast2.show();
-                        return false;
+                        check = false;
                         break;
-                    }
+                    }else
+                        check = true;
                 } while (cursor.moveToNext());
-            }else
+                cursor.close();
+            }
+
+            if (check) {
                 return true;
-            cursor.close();
-            database.close();
+            } else {
+                return false;
+            }
         }else
             return true;
 
@@ -125,10 +136,20 @@ public class EditColor extends DialogFragment {
         btnFinish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (getNewData()){
+                if (getNewData() && checkingForExistence()){
+                    ContentValues contentValues = new ContentValues();
+                    contentValues.put(DBAdapter.KEY_COLOR_NAME, newNameText);
+                    if (!newDescriptionText.equals("")) {
+                        contentValues.put(DBAdapter.KEY_COLOR_DESCRIPTION, newDescriptionText);
+                    }
 
+                    database.update(DBAdapter.DATABASE_TABLE_COLORS,contentValues, DBAdapter.KEY_ID + "=" + id,null);
+                    database.close();
+
+                    dismiss();
+                    Toast.makeText(context, getResources().getString(R.string.mes_edited), Toast.LENGTH_SHORT).show();
+                    ((ListActivity) getActivity()).callShowList();
                 }
-
             }
         });
 

@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,14 +28,17 @@ import com.example.colorhunter.R;
 import com.example.colorhunter.main.activitys.ListActivity;
 import com.example.colorhunter.main.custom_view.CustomColorData;
 import com.example.colorhunter.main.dialog_fragments.DeleteColor;
+import com.example.colorhunter.main.dialog_fragments.EditColor;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class MyRVAdapterColors extends RecyclerView.Adapter<MyRVAdapterColors.MyViewHolder> {
+public class MyRVAdapterColors extends RecyclerView.Adapter<MyRVAdapterColors.MyViewHolder> implements Filterable {
 
     private Context context, wrapper;
     private ClipboardManager clipboardManager;
     private ArrayList<CustomColorData> colorData;
+    private ArrayList<CustomColorData> fullData;
     private FragmentManager fragmentManager;
 
     private DBAdapter myAdapter;
@@ -41,6 +46,7 @@ public class MyRVAdapterColors extends RecyclerView.Adapter<MyRVAdapterColors.My
     public MyRVAdapterColors(Context context1, ArrayList<CustomColorData> data, FragmentManager fragmentManager){
         this.context = context1;
         this.colorData = data;
+        this.fullData = data;
         this.fragmentManager = fragmentManager;
     }
 
@@ -99,6 +105,41 @@ public class MyRVAdapterColors extends RecyclerView.Adapter<MyRVAdapterColors.My
         return colorData.size();
     }
 
+    @Override
+    public Filter getFilter() {
+        Filter filter = new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                FilterResults filterResults = new FilterResults();
+
+                if (constraint == null | constraint.length() == 0){
+                    filterResults.count = fullData.size();
+                    filterResults.values = fullData;
+                }else{
+                    String pattern = constraint.toString().toLowerCase();
+
+                    List<CustomColorData> dataResult = new ArrayList<>();
+
+                    for (CustomColorData customData : fullData){
+                        if (customData.getName().toLowerCase().contains(pattern)){
+                            dataResult.add(customData);
+                        }
+                    }
+                    filterResults.count = dataResult.size();
+                    filterResults.values = dataResult;
+                }
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                colorData = (ArrayList<CustomColorData>) results.values;
+                notifyDataSetChanged();
+            }
+        };
+        return filter;
+    }
+
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public ImageView menu;
@@ -154,9 +195,10 @@ public class MyRVAdapterColors extends RecyclerView.Adapter<MyRVAdapterColors.My
                     deleteColor.show(fragmentManager, "delete color dialog");
 
                 }else if (id == R.id.menu_btn_edit){
+                    EditColor editColor = new EditColor(context, colorData.get(pos).getName(),colorData.get(pos).getDes(), itemId);
+                    editColor.show(fragmentManager, "edit color dialog");
 
                 }
-
                 return true;
             }
         });
