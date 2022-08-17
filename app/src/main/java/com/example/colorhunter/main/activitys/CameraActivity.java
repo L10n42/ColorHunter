@@ -40,7 +40,7 @@ public class CameraActivity extends AppCompatActivity {
 
     YUVtoRGB translator = new YUVtoRGB();
 
-    private int rC, gC, bC;
+    private int rC, gC, bC, surfaceWidth, surfaceHeight;
     private String colorHex;
 
     private CameraSelector cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA;
@@ -130,7 +130,7 @@ public class CameraActivity extends AppCompatActivity {
                     preview.setSurfaceProvider(previewView.getSurfaceProvider());
 
                     ImageAnalysis imageAnalysis = new ImageAnalysis.Builder()
-                            .setTargetResolution(new Size(1080, 1440))
+                            .setTargetResolution(new Size(surfaceWidth, surfaceHeight))
                             .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
                             .build();
 
@@ -141,8 +141,6 @@ public class CameraActivity extends AppCompatActivity {
                                     @SuppressLint("UnsafeOptInUsageError") Image img = image.getImage();
                                     Bitmap bitmap = translator.translateYUV(img, CameraActivity.this);
 
-//                                    Log.d("---WIDTH_bitmap", String.valueOf(bitmap.getWidth()));
-//                                    Log.d("---HEIGHT_bitmap", String.valueOf(bitmap.getHeight()));
                                     int pixel = bitmap.getPixel(bitmap.getWidth() / 2, bitmap.getHeight() / 2);
 
                                     if (pixel != 0) {
@@ -166,8 +164,8 @@ public class CameraActivity extends AppCompatActivity {
 
                     cameraProvider.bindToLifecycle(CameraActivity.this, cameraSelector, imageAnalysis, preview);
 
-                    Log.d("---ResolutionPreview", String.valueOf(preview.getResolutionInfo()));
-                    Log.d("---ResolutionAnalysis", String.valueOf(imageAnalysis.getResolutionInfo()));
+                    surfaceHeight = preview.getResolutionInfo().getResolution().getHeight();
+                    surfaceWidth = preview.getResolutionInfo().getResolution().getWidth();
 
                 } catch (ExecutionException e) {
                     e.printStackTrace();
